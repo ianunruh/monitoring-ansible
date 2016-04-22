@@ -1,0 +1,10 @@
+- name: install influxdb
+  apt:
+    pkg: influxdb
+    state: present
+
+- name: ensure influxdb enabled and started
+  service:
+    name: influxdb
+    enabled: yes
+    state: started

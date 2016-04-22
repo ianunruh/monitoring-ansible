@@ -1,0 +1,56 @@
+# Install data stores
+- hosts: analytics
+  roles:
+    - mysql
+    - redis
+    - rabbitmq
+
+# Configure data stores for monitoring tools
+- hosts: analytics
+  tasks:
+    - name: create grafana mysql db
+      mysql_db:
+        name: grafana
+        state: present
+
+    - name: create grafana mysql user
+      mysql_user:
+        name: grafana
+        host: "%"
+        password: m0nitoring
+        priv: "grafana.*:ALL"
+        state: present
+
+    - name: create sensu rabbitmq vhost
+      rabbitmq_vhost:
+        name: sensu
+        state: present
+
+    - name: create sensu rabbitmq user
+      rabbitmq_user:
+        name: sensu
+        password: m0nitoring
+        vhost: sensu
+        read_priv: .*
+        write_priv: .*
+        configure_priv: .*
+        state: present
+
+# Install monitoring tools
+- hosts: analytics
+  roles:
+    - elasticsearch
+    - logstash
+    - kibana
+    - influxdb
+    - chronograf
+    - kapacitor
+    - grafana
+    - sensu
+    - uchiwa
+
+# Install collectors
+- hosts: app
+  roles:
+    - telegraf
+    - sensu

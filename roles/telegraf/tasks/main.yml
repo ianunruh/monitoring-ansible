@@ -1,0 +1,19 @@
+- name: install telegraf
+  apt:
+    pkg: telegraf
+    state: present
+
+- name: configure telegraf
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify:
+    - restart telegraf
+
+- meta: flush_handlers
+
+- name: ensure telegraf enabled and started
+  service:
+    name: telegraf
+    enabled: yes
+    state: started

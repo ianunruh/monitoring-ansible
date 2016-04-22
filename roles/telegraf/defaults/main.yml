@@ -1,0 +1,16 @@
+telegraf_global_tags: {}
+
+telegraf_outputs:
+  - plugin: influxdb
+    options:
+      urls:
+        - http://localhost:8086
+      database: telegraf
+
+telegraf_inputs:
+  - plugin: cpu
+  - plugin: disk
+  - plugin: diskio
+  - plugin: mem
+  - plugin: swap
+  - plugin: system

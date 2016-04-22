@@ -1,0 +1,17 @@
+- name: restart sensu-api
+  service:
+    name: sensu-api
+    state: restarted
+  when: sensu_api_enabled
+
+- name: restart sensu-client
+  service:
+    name: sensu-client
+    state: restarted
+  when: sensu_client_enabled
+
+- name: restart sensu-server
+  service:
+    name: sensu-server
+    state: restarted
+  when: sensu_server_enabled

@@ -1,0 +1,19 @@
+- name: install uchiwa
+  apt:
+    pkg: uchiwa
+    state: present
+
+- name: configure uchiwa
+  template:
+    src: uchiwa.json.j2
+    dest: /etc/sensu/uchiwa.json
+  notify:
+    - restart uchiwa
+
+- meta: flush_handlers
+
+- name: ensure uchiwa enabled and started
+  service:
+    name: uchiwa
+    enabled: yes
+    state: started

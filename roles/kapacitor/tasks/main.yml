@@ -1,0 +1,10 @@
+- name: install kapacitor
+  apt:
+    pkg: kapacitor
+    state: present
+
+- name: ensure kapacitor enabled and started
+  service:
+    name: kapacitor
+    enabled: yes
+    state: started

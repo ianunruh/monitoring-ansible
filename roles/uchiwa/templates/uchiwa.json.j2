@@ -1,0 +1,9 @@
+{
+  "sensu": {{ uchiwa_sensu_instances|to_nice_json }},
+  "uchiwa": {
+    "host": {{ uchiwa_host|to_json }},
+    "port": {{ uchiwa_port|to_json }},
+    "user": {{ uchiwa_user|to_json }},
+    "pass": {{ uchiwa_password|to_json }}
+  }
+}

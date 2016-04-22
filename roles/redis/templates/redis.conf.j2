@@ -1,0 +1,14 @@
+daemonize yes
+
+bind {{ redis_bind }}
+port {{ redis_port }}
+
+dir /var/lib/redis
+
+loglevel notice
+logfile /var/log/redis/redis-server.log
+
+pidfile /var/run/redis/redis-server.pid
+
+appendonly yes
+appendfsync everysec

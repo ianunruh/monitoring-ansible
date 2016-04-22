@@ -1,0 +1,6 @@
+grafana_database_type: sqlite3
+grafana_database_path: null
+grafana_database_host: null
+grafana_database_name: null
+grafana_database_user: null
+grafana_database_password: null

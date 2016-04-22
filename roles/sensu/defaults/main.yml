@@ -1,0 +1,20 @@
+sensu_api_enabled: false
+sensu_client_enabled: false
+sensu_server_enabled: false
+
+sensu_api_host: localhost
+sensu_api_bind: 0.0.0.0
+sensu_api_port: 4567
+
+sensu_rabbitmq_host: localhost
+sensu_rabbitmq_port: 5672
+sensu_rabbitmq_vhost: sensu
+sensu_rabbitmq_user: guest
+sensu_rabbitmq_password: guest
+
+sensu_client_name: "{{ ansible_fqdn }}"
+sensu_client_address: "{{ ansible_default_ipv4.address }}"
+sensu_client_subscriptions: []
+
+sensu_redis_host: localhost
+sensu_redis_port: 6379

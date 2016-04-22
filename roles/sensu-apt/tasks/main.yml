@@ -1,0 +1,8 @@
+- name: add apt key
+  apt_key:
+    url: http://repositories.sensuapp.org/apt/pubkey.gpg
+
+- name: add apt repository
+  apt_repository:
+    repo: deb http://repositories.sensuapp.org/apt sensu main
+    update_cache: yes

@@ -1,0 +1,24 @@
+{% if telegraf_global_tags %}
+[global_tags]
+{% for tag, value in telegraf_global_tags.iteritems() %}
+{{ tag }} = {{ value|to_json }}
+{% endfor %}
+{% endif %}
+
+{% for input in telegraf_inputs %}
+[[inputs.{{ input.plugin }}]]
+{% if input.options is defined %}
+{% for key, value in input.options.iteritems() %}
+{{ key }} = {{ value|to_json }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+{% for output in telegraf_outputs %}
+[[outputs.{{ output.plugin }}]]
+{% if output.options is defined %}
+{% for key, value in output.options.iteritems() %}
+{{ key }} = {{ value|to_json }}
+{% endfor %}
+{% endif %}
+{% endfor %}

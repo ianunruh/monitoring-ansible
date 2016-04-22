@@ -1,0 +1,9 @@
+uchiwa_sensu_instances:
+  - name: default
+    host: localhost
+    port: 4567
+
+uchiwa_host: 0.0.0.0
+uchiwa_port: 3333
+uchiwa_user: admin
+uchiwa_password: admin

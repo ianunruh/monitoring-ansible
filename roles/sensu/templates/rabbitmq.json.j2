@@ -1,0 +1,9 @@
+{
+  "rabbitmq": {
+    "host": {{ sensu_rabbitmq_host|to_json }},
+    "port": {{ sensu_rabbitmq_port|to_json }},
+    "vhost": {{ sensu_rabbitmq_vhost|to_json }},
+    "user": {{ sensu_rabbitmq_user|to_json }},
+    "password": {{ sensu_rabbitmq_password|to_json }}
+  }
+}

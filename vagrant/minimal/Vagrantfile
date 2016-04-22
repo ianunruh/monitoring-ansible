@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "boxcutter/ubuntu1404"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  config.vm.define "analytics1" do |box|
+    box.vm.hostname = "analytics1"
+    box.vm.network "private_network", ip: "10.10.0.100"
+
+    box.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+    end
+  end
+
+  config.vm.define "app1" do |box|
+    box.vm.hostname = "app1"
+    box.vm.network "private_network", ip: "10.10.0.200"
+
+    box.vm.provision "ansible" do |ansible|
+      ansible.limit = "all"
+      ansible.playbook = "kitchen-sink.yml"
+      ansible.groups = {
+        "analytics" => ["analytics1"],
+        "app" => ["app1"],
+      }
+    end
+  end
+end

@@ -1,0 +1,9 @@
+- name: install mysql
+  apt:
+    pkg: mysql-server
+    state: present
+
+- name: install python client
+  apt:
+    pkg: python-mysqldb
+    state: present

@@ -1,0 +1,61 @@
+- name: install sensu
+  apt:
+    pkg: sensu
+    state: present
+
+- name: configure api
+  template:
+    src: api.json.j2
+    dest: /etc/sensu/conf.d/api.json
+  when: sensu_api_enabled
+  notify:
+    - restart sensu-api
+
+- name: configure client
+  template:
+    src: client.json.j2
+    dest: /etc/sensu/conf.d/client.json
+  when: sensu_client_enabled
+  notify:
+    - restart sensu-client
+
+- name: configure rabbitmq
+  template:
+    src: rabbitmq.json.j2
+    dest: /etc/sensu/conf.d/rabbitmq.json
+  when: sensu_client_enabled or sensu_server_enabled
+  notify:
+    - restart sensu-client
+    - restart sensu-server
+
+- name: configure redis
+  template:
+    src: redis.json.j2
+    dest: /etc/sensu/conf.d/redis.json
+  when: sensu_api_enabled or sensu_server_enabled
+  notify:
+    - restart sensu-api
+    - restart sensu-server
+
+- meta: flush_handlers
+
+- name: ensure sensu-api enabled and started
+  service:
+    name: sensu-api
+    enabled: yes
+    state: started
+  when: sensu_api_enabled
+
+- name: ensure sensu-client enabled and started
+  service:
+    name: sensu-client
+    enabled: yes
+    state: started
+  when: sensu_client_enabled
+
+- name: ensure sensu-server enabled and started
+  service:
+    name: sensu-server
+    enabled: yes
+    state: started
+  when: sensu_server_enabled

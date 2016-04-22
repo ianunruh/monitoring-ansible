@@ -1,0 +1,24 @@
+- name: add apt repository
+  apt_repository:
+    repo: ppa:chris-lea/redis-server
+    update_cache: yes
+
+- name: install redis
+  apt:
+    pkg: redis-server
+    state: present
+
+- name: configure redis
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis/redis.conf
+  notify:
+    - restart redis
+
+- meta: flush_handlers
+
+- name: ensure redis enabled and started
+  service:
+    name: redis-server
+    enabled: yes
+    state: started

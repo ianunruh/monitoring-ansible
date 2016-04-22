@@ -1,0 +1,4 @@
+- name: install java
+  apt:
+    pkg: openjdk-7-jre-headless
+    state: present

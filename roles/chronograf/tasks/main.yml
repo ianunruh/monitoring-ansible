@@ -1,0 +1,10 @@
+- name: install chronograf
+  apt:
+    pkg: chronograf
+    state: present
+
+- name: ensure chronograf enabled and started
+  service:
+    name: chronograf
+    enabled: yes
+    state: started

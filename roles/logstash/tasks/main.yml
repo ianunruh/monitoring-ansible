@@ -1,0 +1,13 @@
+- name: add apt key
+  apt_key:
+    url: https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: add apt repository
+  apt_repository:
+    repo: deb http://packages.elastic.co/logstash/2.3/debian stable main
+    update_cache: yes
+
+- name: install logstash
+  apt:
+    pkg: logstash
+    state: present

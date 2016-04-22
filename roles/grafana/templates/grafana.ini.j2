@@ -1,0 +1,17 @@
+[database]
+type = {{ grafana_database_type }}
+{% if grafana_database_path %}
+path = {{ grafana_database_path }}
+{% endif %}
+{% if grafana_database_host %}
+host = {{ grafana_database_host }}
+{% endif %}
+{% if grafana_database_name %}
+name = {{ grafana_database_name }}
+{% endif %}
+{% if grafana_database_user %}
+user = {{ grafana_database_user }}
+{% endif %}
+{% if grafana_database_password %}
+password = {{ grafana_database_password }}
+{% endif %}

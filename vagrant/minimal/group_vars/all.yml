@@ -1,0 +1,12 @@
+telegraf_outputs:
+  - plugin: influxdb
+    options:
+      database: telegraf
+      urls:
+        - http://analytics1:8086
+
+sensu_rabbitmq_host: analytics1
+sensu_rabbitmq_user: sensu
+sensu_rabbitmq_password: m0nitoring
+
+sensu_redis_host: analytics1
