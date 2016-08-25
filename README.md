@@ -35,5 +35,6 @@ cd vagrant/minimal
 vagrant up
 ```
 
-This will automatically apply the `vagrant/minimal/kitchen-sink.yml` playbook against the VMs. Afterwards, you
-will be able to access the various monitoring tools through their respective interfaces.
+This will automatically apply the `vagrant/minimal/kitchen-sink.yml` playbook against the VMs.
+Afterwards, you will be able to access the various monitoring tools through their respective
+interfaces on the `analytics1` host via `10.10.0.100`.
